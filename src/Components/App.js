@@ -5,6 +5,7 @@ import Header from './Header';
 import { v4 as uuid } from 'uuid';
 import Addcontact from './Addcontact';
 import Contactlist from './Contactlist';
+import Contactdetails from './Contactdetails';
 
 function App() {
   const LOCAL_STORAGE_KEY = "contacts";
@@ -59,6 +60,9 @@ function App() {
           {/* Default Route to Contact List page */}
           <Route path='/' exact
             element={<Contactlist getcontactid={removecontacthandler} contacts={contacts} />} />
+
+          {/* Route to Contact Details page */}
+          <Route path='/contact/:id' exact element={<Contactdetails contact={contacts} />} />
         </Routes>
       </Router>
     </div>

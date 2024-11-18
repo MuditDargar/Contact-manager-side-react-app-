@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import user from '../Images/user.png';
 
 const Contactcard = ({ contact, clickhandler }) => {
@@ -23,12 +24,14 @@ const Contactcard = ({ contact, clickhandler }) => {
                 </div>
 
                 <div className="content">
-                    <div className="header" style={{ fontSize: "1.2em", color: "teal" }}>
-                        {name}
-                    </div>
-                    <div className="meta" style={{ marginTop: "5px", color: "gray" }}>
-                        {email}
-                    </div>
+                    <Link to={`/contact/${id}`} >
+                        <div className="header" style={{ fontSize: "1.2em", color: "teal" }}>
+                            {name}
+                        </div>
+                        <div className="meta" style={{ marginTop: "5px", color: "gray" }}>
+                            {email}
+                        </div>
+                    </Link>
                 </div>
 
                 <div className="extra content" style={{ textAlign: "right" }}>
