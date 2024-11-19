@@ -19,6 +19,8 @@ function App() {
     return storedContacts ? JSON.parse(storedContacts) : [];
   });
 
+  const [searchterm, setsearchterm] = useState("");
+  const [searchresult, setsearchresult] = useState([]);
 
   //  Retrive contact from db.json which url present in api/contacts
   const retrivecontacts = async () => {
@@ -52,6 +54,21 @@ function App() {
     });
     setcontacts(newcontacts);
   }
+
+  const searchhandler = (searchterm) => {
+    setsearchterm(searchterm);
+    if (searchterm !== " ") {
+      const filtered = contacts.filter((contact) => {
+
+        return Object.values(contact).join(" ").toLowerCase().includes(searchterm.toLowerCase())
+      });
+      setsearchresult(filtered);
+    }
+    else {
+      setsearchresult(contacts);
+    }
+  }
+
   // useEffect(() => {
   //   const retrivecontacts = localStorage.getItem(localStorage.getItem(LOCAL_STORAGE_KEY));
   //   if (retrivecontacts) {
@@ -90,7 +107,7 @@ function App() {
 
           {/* Default Route to Contact List page */}
           <Route path='/' exact
-            element={<Contactlist getcontactid={removecontacthandler} contacts={contacts} />} />
+            element={<Contactlist getcontactid={removecontacthandler} contacts={searchterm.length < 1 ? contacts : searchresult} term={searchterm} searchKeyword={searchhandler} />} />
 
           {/* Route to Contact Details page */}
           <Route path='/contact/:id' exact element={<Contactdetails />} />
