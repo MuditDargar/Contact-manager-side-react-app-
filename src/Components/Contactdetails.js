@@ -17,7 +17,7 @@ const Contactdetails = () => {
             </div>
         );
     }
-    const { id, name, email } = contact;
+    const { name, email } = contact;
 
     return (
         <div className="main" style={{ display: 'flex', justifyContent: 'center', marginTop: '120px' }}>

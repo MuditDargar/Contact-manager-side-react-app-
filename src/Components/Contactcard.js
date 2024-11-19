@@ -36,10 +36,17 @@ const Contactcard = ({ contact, clickhandler }) => {
 
                 <div className="extra content" style={{ textAlign: "right" }}>
                     <i
-                        className="trash alternate outline icon"
-                        style={{ color: "red", cursor: "pointer" }}
+                        className="trash alternate outline  large icon"
+                        style={{ color: "red", cursor: "pointer", marginLeft: '10px' }}
                         onClick={() => clickhandler(id)}
                     ></i>
+                    <Link to={`/edit`} state={{ contact }} >
+                        <i
+                            className="edit alternate outline large icon"
+                            style={{ color: "blue", cursor: "pointer" }}
+                            onClick={() => clickhandler(id)}
+                        ></i>
+                    </Link>
                 </div>
             </div>
         </div>
