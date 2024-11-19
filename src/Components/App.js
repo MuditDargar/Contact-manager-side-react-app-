@@ -6,6 +6,7 @@ import { v4 as uuid } from 'uuid';
 import Addcontact from './Addcontact';
 import Contactlist from './Contactlist';
 import Contactdetails from './Contactdetails';
+import EditContactWrapper from './Editcontact';
 import api from '../api/contacts';
 
 
@@ -37,6 +38,12 @@ function App() {
     const newcontacts = [...contacts, response.data];
     setcontacts(newcontacts);
   };
+
+  const updatecontacthandler = async (contact) => {
+    await api.put(`/contacts/${contact.id}`, contact);
+    const updatedContacts = contacts.map((c) => (c.id === contact.id ? contact : c));
+    setcontacts(updatedContacts);
+  }
 
   const removecontacthandler = async (id) => {
     await api.delete(`/contacts/${id}`);
@@ -76,6 +83,11 @@ function App() {
           <Route path='/add' exact element={
             <Addcontact contacts={contacts} addcontacthandler={addcontacthandler} />
           } />
+          <Route
+            path="/edit"
+            element={<EditContactWrapper updatecontacthandler={updatecontacthandler} />}
+          />
+
           {/* Default Route to Contact List page */}
           <Route path='/' exact
             element={<Contactlist getcontactid={removecontacthandler} contacts={contacts} />} />
