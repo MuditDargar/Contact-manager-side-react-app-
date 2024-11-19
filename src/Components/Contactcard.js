@@ -24,7 +24,7 @@ const Contactcard = ({ contact, clickhandler }) => {
                 </div>
 
                 <div className="content">
-                    <Link to={`/contact/${id}`} >
+                    <Link to={`/contact/${id}`} state={{ contact }} >
                         <div className="header" style={{ fontSize: "1.2em", color: "teal" }}>
                             {name}
                         </div>
